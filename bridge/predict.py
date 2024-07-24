@@ -4,7 +4,8 @@ from ultralytics import YOLO
 model = YOLO("best.pt")  # pretrained YOLOv8n model
 
 # Run batched inference on a list of images
-results = model(["im4.jpg"], max_det=100, conf=0.3, imgsz=800)  # return a list of Results objects
+results = model(source="im1.jpg", imgsz=800, conf=0.25)  # return a list of Results objects
+# model.predict("im1.jpg", show=True, max_det=30, save=True)
 
 # Process results list
 for result in results:
