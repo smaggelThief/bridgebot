@@ -4,7 +4,7 @@ from ultralytics import YOLO
 model = YOLO("best.pt")  # pretrained YOLOv8n model
 
 # Run batched inference on a list of images
-results = model(["im1.jpg"], conf=0.1)  # return a list of Results objects
+results = model(["im4.jpg"], max_det=100, conf=0.3, imgsz=800)  # return a list of Results objects
 
 # Process results list
 for result in results:
@@ -14,4 +14,4 @@ for result in results:
     probs = result.probs  # Probs object for classification outputs
     obb = result.obb  # Oriented boxes object for OBB outputs
     result.show()  # display to screen
-    result.save(filename="result2.jpg")  # save to disk
+    result.save(filename="result.jpg")  # save to disk
