@@ -1,8 +1,8 @@
 task: detect
 mode: train
 model: yolov8n.yaml
-data: coco8/data.yaml
-epochs: 1
+data: bridgedata/data.yaml
+epochs: 3
 time: null
 patience: 100
 batch: 16
@@ -103,4 +103,4 @@ erasing: 0.4
 crop_fraction: 1.0
 cfg: null
 tracker: botsort.yaml
-save_dir: runs/detect/train
+save_dir: runs\detect\train
