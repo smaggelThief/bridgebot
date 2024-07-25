@@ -34,4 +34,4 @@ def predict(link):
     conf = results[0].boxes.conf.cpu().numpy() #only do first result
     print(conf)
     max_con = conf[np.argmax(conf)]
-    return f"This photo is {max_con * 100}% bridge"
+    return f"This photo is {round((max_con * 100), 2)}% bridge"
