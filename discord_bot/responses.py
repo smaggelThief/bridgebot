@@ -32,7 +32,7 @@ def get_response(user_input: str, username) -> str:
         f = open("leaderboard.txt", "w")
         f.write("\n".join(leaderboard[:9]))
         f.close()
-        return str(data[0] + " Thats a new record!")
+        return str(data[0] + ". That's a new record!")
     if user_input.split()[0] == "/bot":
         return "BOT!"
     if user_input.split()[0] == "/top_bridge":
@@ -40,3 +40,15 @@ def get_response(user_input: str, username) -> str:
         leaderboard = f.read().split("\n")
         f.close()
         return str(leaderboard[0])
+    if user_input.split()[0] == "/leaderboard":
+        f = open("leaderboard.txt", "r")
+        leaderboard = f.read().split("\n")
+        f.close()
+        counter_lol = 0
+        for spot in leaderboard:
+            leaderboard[counter_lol] = str(spot.split()[:2])
+            counter_lol += 1
+        text = ("\n").join(leaderboard)
+        return str(text)
+    if user_input.split()[0] == "/top":
+        return "top"
