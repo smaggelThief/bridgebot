@@ -21,13 +21,17 @@ async def send_message(message: Message, user_message: str) -> None:
         return
 
     if is_private := user_message[0] == '?':
-        user_message = user_message[1:]
-
-    try:
-        response: str = get_response(user_message)
-        await message.author.send(response) if is_private else await message.channel.send(response)
-    except Exception as e:
-        print(e)
+        user_message = user_message
+    
+    if user_message[0] == "/":
+        try:
+            response: str = get_response(user_message, str(message.author))
+            if is_private:
+                await message.author.send(response) 
+            else:
+                await message.channel.send(response)
+        except Exception as e:
+            print(e)
 
 
 # STEP 3: HANDLING THE STARTUP FOR OUR BOT
@@ -46,7 +50,6 @@ async def on_message(message: Message) -> None:
     user_message: str = message.content
     channel: str = str(message.channel)
 
-    print(f'[{channel}] {username}: "{user_message}"')
     await send_message(message, user_message)
 
 
